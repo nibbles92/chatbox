@@ -51,7 +51,6 @@ public class Chatbot
 			}
 		}
 		
-		
 		return hasLength;
 	}
 	
