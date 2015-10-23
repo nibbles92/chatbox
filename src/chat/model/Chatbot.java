@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Base version of the 2015 Chatbot class. Only stub methods are provided. Students will complete methods as part
  * of the project.
  * @author Dylan Rockne
- * @version 1.1 10/23/15 
+ * @version 1.2 10/23/15 Repaired the getUserName method.
  */
 public class Chatbot 
 {
