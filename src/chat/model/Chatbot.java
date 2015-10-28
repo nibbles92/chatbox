@@ -77,7 +77,7 @@ public class Chatbot
 	{
 		boolean hasContent = false;
 		
-		if(currentInput.toLowerCase().contains(content.toLowerCase()))
+		if(memesList.contains(currentInput))
 		{
 			hasContent = true;
 		}
@@ -104,7 +104,13 @@ public class Chatbot
 	 */
 	public boolean memeChecker(String currentInput)
 	{
-		return false;
+		boolean hasMemeList = false;
+		
+		if(currentInput.toLowerCase().contains(content.toLowerCase()))
+		{
+			hasMemeList = true;
+		}
+		return hasMemeList;
 	}
 	
 	/**
