@@ -28,10 +28,15 @@ public class ChatController
 	
 	private void chat()
 	{
-		String textFromUser = display.collectUserText("Talk to the chatbot");
+		String textFromUser = display.collectUserText("What do you want to talk about?");
 		while(simpleBot.lengthChecker(textFromUser))
 		{
-			textFromUser = display.collectUserText("wow " + textFromUser);
+			if(simpleBot.contentChecker(textFromUser))
+			{
+				display.displayText("Wow, I had no idea you loved " + simpleBot.getContent());
+			}		
+			
+			textFromUser = display.collectUserText(textFromUser);
 		}
 	}
 }
