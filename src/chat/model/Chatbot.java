@@ -24,7 +24,7 @@ public class Chatbot
 		this.memesList = new ArrayList<String>();
 		this.politicalTopicList = new ArrayList<String>();
 		this.userName = userName;
-		this.content = "Video Games";
+		this.content = "video games";
 		
 	}
 	
@@ -77,9 +77,9 @@ public class Chatbot
 	{
 		boolean hasContent = false;
 		
-		if(memesList.contains(currentInput))
+		if(currentInput.toLowerCase().contains(content.toLowerCase()))
 		{
-			hasContent = true;
+			hasContent= true;
 		}
 		
 		return hasContent;
@@ -104,13 +104,17 @@ public class Chatbot
 	 */
 	public boolean memeChecker(String currentInput)
 	{
-		boolean hasMemeList = false;
+		boolean hasMemesList = false;
 		
-		if(currentInput.toLowerCase().contains(content.toLowerCase()))
+		for(String memes : memesList)
 		{
-			hasMemeList = true;
+			if(currentInput.toLowerCase().contains(content.toLowerCase()))
+			{
+				hasMemesList = true;
+			}
 		}
-		return hasMemeList;
+		return hasMemesList;
+	
 	}
 	
 	/**
