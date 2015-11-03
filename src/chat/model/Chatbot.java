@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Base version of the 2015 Chatbot class. Only stub methods are provided. Students will complete methods as part
  * of the project.
  * @author Dylan Rockne
- * @version 1.3 10/28/15 Built and called buildMemesList. Repaired the getCotent method completed the content checker method
+ * @version 1.4 11/3/15 Built and called buildMemesList. Repaired the getCotent method completed the content checker method
  */
 public class Chatbot 
 {
@@ -106,7 +106,7 @@ public class Chatbot
 	{
 		boolean hasMemesList = false;
 		
-		for(String memes : memesList)
+		for(String meme : memesList)
 		{
 			if(currentInput.toLowerCase().contains(content.toLowerCase()))
 			{
@@ -117,6 +117,56 @@ public class Chatbot
 	
 	}
 	
+	public boolean quitChecker(String currentInput)
+	{
+		boolean quitCheck = false;
+		
+		return quitCheck;
+	}
+
+	public String processConversation(String currentInput)
+	{
+		String nextConversation = "what else would you like to talk about";
+		int randomTopic = (int) (Math.random() * 5);
+		
+		switch (randomTopic)
+		{
+		case 0:
+			if(contentChecker(currentInput))
+			{
+				nextConversation = "You talked about video games! That is cool. What else do you like?";
+			}
+			break;
+		case 1:
+			if(memeChecker(currentInput))
+			{
+				nextConversation = "That is a funny meme i like it alot! What food do you like?";
+			}
+			break;
+		case 2:
+			//Choose your own topic
+			if(politicalTopicChecker(currentInput))
+			{
+				nextConversation = "Do you like StarBucks? You white girl";
+			}
+			break;
+		case 3:
+			//Random topic for chat here
+			if(currentInput.length() > 23)
+			{
+				nextConversation = "Classic whit girl. How old are you?";
+			}
+			break;
+		case 4:
+			nextConversation = "that is neat. Are you a boy or a girl?";
+			break;
+		default:
+			nextConversation = "ahhhh. goodbye.";
+				break;
+		}
+		
+		return nextConversation;
+	}
 	/**
 	 * Returns the username of this Chatbot instance.
 	 * @return The username of the Chatbot.
