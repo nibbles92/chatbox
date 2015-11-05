@@ -15,7 +15,7 @@ public class ChatView
 	public ChatView()
 	{
 		windowMessage = "This message brought to you by chatbot ";
-		chatIcon = new ImageIcon(getClass().getResource("images/chatbot.jpeg"));
+		chatIcon = new ImageIcon(getClass().getResource("images/download.jpeg"));
 	}
 	
 	
@@ -39,6 +39,6 @@ public class ChatView
 	 */
 	public void displayText(String displayText)
 	{
-		JOptionPane.showMessageDialog(null, displayText);
+		JOptionPane.showMessageDialog(null, displayText,windowMessage,JOptionPane.PLAIN_MESSAGE,chatIcon);
 	}
 }
