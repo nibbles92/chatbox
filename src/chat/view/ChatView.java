@@ -1,7 +1,7 @@
 package chat.view;
 
 import javax.swing.JOptionPane;
-
+import javax.swing.ImageIcon;
 /**
  * 
  * @author droc6148
@@ -9,6 +9,15 @@ import javax.swing.JOptionPane;
  */
 public class ChatView 
 {
+	private String windowMessage;
+	private ImageIcon chatIcon;
+	
+	public ChatView()
+	{
+		windowMessage = "This message brought to you by chatbot ";
+		chatIcon = new ImageIcon(getClass().getResource("images/chatbot.jpeg"));
+	}
+	
 	
 	    /**
 	    * Popups the display and show the user input.
