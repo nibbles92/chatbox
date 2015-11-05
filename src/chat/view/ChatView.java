@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 /**
  * 
  * @author droc6148
- *@version 1.0
+ *@version 1.2 Added Icon to the input window.
  */
 public class ChatView 
 {
@@ -28,7 +28,7 @@ public class ChatView
 		{
 			String userInput = "";
 			
-			userInput = JOptionPane.showInputDialog(null, displayText);
+			userInput = JOptionPane.showInputDialog(null, displayText, windowMessage, JOptionPane.INFORMATION_MESSAGE,chatIcon,null,"type here please").toString();
 			
 			return userInput;
 		}
