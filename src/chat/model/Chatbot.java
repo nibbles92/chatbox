@@ -93,6 +93,43 @@ public class Chatbot
 	 */
 	public boolean politicalTopicChecker(String currentInput)
 	{
+		String nextConversation = "Now politics";
+		int randomtopic = (int) (Math.random() * 5);
+		
+		switch(randomtopic)
+		{
+		case 0:
+			if(politicalTopicChecker(currentInput))
+			{
+				nextConversation = "Who do you want for president? Trump, Clinton, Biden, Carson, Rubio, Fiorina, or Sanders";
+			}
+			break;
+		case 1:
+			if(politicalTopicChecker(currentInput))
+			{
+				nextConversation = "oh yes. Why did you choose that person?";
+			}break;
+		case 2:
+			if(politicalTopicChecker(currentInput))
+			{
+				nextConversation = "That is intresting that you that person for that reason. What do you like about them";
+			}break;
+		case 3:
+			if(politicalTopicChecker(currentInput))
+			{
+				nextConversation = "That is not a reason to like them. Are you for democrat, republican, liberal, conservative";
+			}break;
+		case 4:
+			if(politicalTopicChecker(currentInput))
+			{
+				nextConversation = "That is it for political stuff.";
+			}
+			default:
+			{
+				nextConversation = "Thats all folks!";
+			}break;
+			
+		}
 		return false;
 	}
 	
@@ -154,7 +191,7 @@ public class Chatbot
 			//Random topic for chat here
 			if(currentInput.length() > 23)
 			{
-				nextConversation = "Classic whit girl. How old are you?";
+				nextConversation = "Classic white girl. How old are you?";
 			}
 			break;
 		case 4:
@@ -200,7 +237,7 @@ public class Chatbot
 	 */
 	public ArrayList<String> getPoliticalTopicList()
 	{
-		return null;
+		return politicalTopicList;
 	}
 	
 	/**
