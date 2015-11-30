@@ -2,6 +2,7 @@ package chat.controller;
 
 import chat.model.Chatbot;
 import chat.view.ChatView;
+import chat.view.ChatFrame;
 /**
  * Controller for the chatbot project.
  * @author droc6148
@@ -11,7 +12,9 @@ public class ChatController
 {
 	private Chatbot simpleBot;
 	private ChatView display;
-	
+	private ChatFrame baseFrame;
+	private Chatbot chatBot;
+
 	
 	public ChatController()
 	{
@@ -43,4 +46,21 @@ public class ChatController
 			textFromUser = display.collectUserText(textFromUser);
 		}
 	}
+	
+	public ChatView getChatView()
+	{
+		return display;
+	}
+	
+	public ChatFrame getBaseFrame()
+	{
+		return baseFrame;
+	}
+	
+	public Chatbot getChatbot()
+	{
+		return chatBot;
+	}
+	
+	
 }

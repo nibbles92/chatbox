@@ -26,6 +26,8 @@ public class Chatbot
 		this.userName = userName;
 		this.content = "video games";
 		
+		buildMemesList();
+		
 	}
 	
 	private void buildMemesList()
@@ -45,7 +47,14 @@ public class Chatbot
 	
 	private void buildPoliticalTopicsList()
 	{
-		
+		this.politicalTopicList.add("Trump");
+		this.politicalTopicList.add("clinton");
+		this.politicalTopicList.add("Deez nuts");
+		this.politicalTopicList.add("Biden");
+		this.politicalTopicList.add("Carson");
+		this.politicalTopicList.add("Rubio");
+		this.politicalTopicList.add("Fiorina");
+		this.politicalTopicList.add("Sanders");
 	}
 	
 	/**
@@ -247,5 +256,10 @@ public class Chatbot
 	public void setContent(String content)
 	{
 		
+	}
+	
+	public boolean keyboardMashChecker(String currentInput)
+	{
+		return true;
 	}
 }
