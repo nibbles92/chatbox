@@ -15,38 +15,65 @@ public class ChatController
 	private ChatFrame baseFrame;
 	private Chatbot chatBot;
 
-	
+	//shows the display
 	public ChatController()
 	{
 		display = new ChatView();
 		String userName = display.collectUserText("What is your name?");
 		simpleBot = new Chatbot(userName);
+		baseFrame = new ChatFrame(this);
+			
 	}
-	
+	/**
+	 * shows the users name and says hello
+	 */
 	public void start()
 	{
 		display.displayText("Hello " + simpleBot.getUserName());
-		chat();
+		//chat();
 	}
-	
+	/**
+	 * collects user answer and displays message
+	 */
 	private void chat()
 	{
 		String textFromUser = display.collectUserText("What do you want to talk about?");
 		while(simpleBot.lengthChecker(textFromUser))
 		{
-			if(simpleBot.contentChecker(textFromUser))
-			{
-				display.displayText("Wow, I had no idea you loved " + simpleBot.getContent());
-			}	
-			else if(simpleBot.memeChecker(textFromUser))
-			{
-				display.displayText("Who knew you liked dank memes!!!!");
-			} 
-			
+			textFromUser = simpleBot.processConversation(textFromUser);
 			textFromUser = display.collectUserText(textFromUser);
 		}
 	}
-	
+	/**
+	 * shows botResposnse and has a shutdown
+	 * @param conversation
+	 * @return
+	 */
+	public String fromUserToChatbot(String conversation)
+	{
+		String botResponse = "";
+		
+		if(simpleBot.quitChecker(conversation))
+		{
+			shutDown();
+		}
+		
+		botResponse = simpleBot.processConversation(conversation);
+		
+		return botResponse;
+	}
+	/**
+	 * shuts down the program
+	 */
+	private void shutDown()
+	{
+		display.displayText("Goodbye, " + simpleBot.getUserName() + " it has been fun talking to you");
+		System.exit(0);
+	}
+	/**
+	 * getters and setters
+	 * @return
+	 */
 	public ChatView getChatView()
 	{
 		return display;

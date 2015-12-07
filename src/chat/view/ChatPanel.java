@@ -36,7 +36,9 @@ public class ChatPanel extends JPanel
 		chatArea = new JTextArea(10,30);
 		typingField= new JTextField(30);
 		promptLabel = new JLabel("");
-		submitButton = new JButton("adsa");
+		submitButton = new JButton("Enter");
+		
+		
 		
 		setupPanel();
 		setupLayout();
@@ -46,7 +48,7 @@ public class ChatPanel extends JPanel
 	private void setupPanel()
 	{
 		this.setLayout(baseLayout);
-		this.setBackground(Color.WHITE);
+		this.setBackground(Color.GREEN);
 		this.add(chatArea);
 		this.add(typingField);
 		this.add(submitButton);
@@ -57,7 +59,16 @@ public class ChatPanel extends JPanel
 	
 	private void setupLayout()
 	{
-		
+		baseLayout.putConstraint(SpringLayout.WEST, submitButton, 6, SpringLayout.EAST, chatArea);
+		baseLayout.putConstraint(SpringLayout.SOUTH, submitButton, -6, SpringLayout.NORTH, typingField);
+		baseLayout.putConstraint(SpringLayout.EAST, submitButton, 0, SpringLayout.EAST, typingField);
+		baseLayout.putConstraint(SpringLayout.WEST, chatArea, 0, SpringLayout.WEST, promptLabel);
+		baseLayout.putConstraint(SpringLayout.EAST, chatArea, 305, SpringLayout.WEST, promptLabel);
+		baseLayout.putConstraint(SpringLayout.NORTH, typingField, 195, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, typingField, 6, SpringLayout.EAST, chatArea);
+		baseLayout.putConstraint(SpringLayout.EAST, typingField, 0, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, chatArea, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, chatArea, -5, SpringLayout.SOUTH, this);
 	}
 	
 	private void setupListeners()
@@ -66,7 +77,14 @@ public class ChatPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				setBackground(Color.BLUE);
+				//get chatbots answer
+				//display answer
+				//clear user field
+				String userText = typingField.getText(); //Grab user text
+				String response = baseController.fromUserToChatbot(userText);//send the text to the controller
+				chatArea.append("\nUser:" + userText);//display users text
+				chatArea.append("\nChatbot:" + response);
+				typingField.setText("");
 			}
 		});
 	}
