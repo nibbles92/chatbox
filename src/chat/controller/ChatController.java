@@ -3,6 +3,7 @@ package chat.controller;
 import chat.model.Chatbot;
 import chat.view.ChatView;
 import chat.view.ChatFrame;
+import chat.model.CTECTwitter;
 /**
  * Controller for the chatbot project.
  * @author droc6148
@@ -14,10 +15,14 @@ public class ChatController
 	private ChatView display;
 	private ChatFrame baseFrame;
 	private Chatbot chatBot;
+	private CTECTwitter myTwitter;
 
-	//shows the display
+	/**
+	 * shows the display
+	 */
 	public ChatController()
 	{
+		myTwitter = new CTECTwitter(this);
 		display = new ChatView();
 		String userName = display.collectUserText("What is your name?");
 		simpleBot = new Chatbot(userName);
@@ -70,6 +75,17 @@ public class ChatController
 		display.displayText("Goodbye, " + simpleBot.getUserName() + " it has been fun talking to you");
 		System.exit(0);
 	}
+	
+	public void sendTweet(String tweet)
+	{
+		myTwitter.sendTweet(tweet);
+	}
+	
+	public void handleErrors(String error)
+	{
+		display.displayText(error);
+	}
+	
 	/**
 	 * getters and setters
 	 * @return
@@ -78,16 +94,24 @@ public class ChatController
 	{
 		return display;
 	}
-	
+	/**
+	 * getters and setters
+	 * @return
+	 */
 	public ChatFrame getBaseFrame()
 	{
 		return baseFrame;
 	}
-	
+	/**
+	 * getters and setters
+	 * @return
+	 */
 	public Chatbot getChatbot()
 	{
 		return chatBot;
 	}
+	
+	
 	
 	
 }
