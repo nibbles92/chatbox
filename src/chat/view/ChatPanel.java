@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import chat.controller.ChatController;
+import chat.controller.IOController;
 
 import java.awt.Color;
 /**
@@ -36,6 +37,8 @@ public class ChatPanel extends JPanel
 	private JLabel promptLabel;
 	private JButton tweetButton;
 	private JButton analyzeTwitterButton;
+	private JButton saveButton;
+	private JButton loadButton;
 	
 	
 	/**
@@ -52,6 +55,17 @@ public class ChatPanel extends JPanel
 		submitButton = new JButton("Enter");
 		analyzeTwitterButton = new JButton("");
 		tweetButton = new JButton("Tweet");
+		saveButton = new JButton("Save");
+		baseLayout.putConstraint(SpringLayout.EAST, analyzeTwitterButton, 0, SpringLayout.EAST, saveButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, saveButton, 6, SpringLayout.SOUTH, typingField);
+		baseLayout.putConstraint(SpringLayout.WEST, saveButton, 10, SpringLayout.WEST, typingField);
+		baseLayout.putConstraint(SpringLayout.EAST, saveButton, -7, SpringLayout.EAST, submitButton);
+		loadButton = new JButton("Load");
+		baseLayout.putConstraint(SpringLayout.NORTH, analyzeTwitterButton, 6, SpringLayout.SOUTH, loadButton);
+		baseLayout.putConstraint(SpringLayout.WEST, analyzeTwitterButton, 10, SpringLayout.WEST, loadButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, loadButton, 6, SpringLayout.SOUTH, saveButton);
+		baseLayout.putConstraint(SpringLayout.WEST, loadButton, 0, SpringLayout.WEST, submitButton);
+		baseLayout.putConstraint(SpringLayout.EAST, loadButton, 0, SpringLayout.EAST, saveButton);
 	
 		
 		setupChatPane();
@@ -84,6 +98,8 @@ public class ChatPanel extends JPanel
 		this.add(submitButton);
 		this.add(promptLabel);
 		this.add(tweetButton);
+		this.add(saveButton);
+		this.add(loadButton);
 		this.add(analyzeTwitterButton);
 		typingField.setToolTipText("Type here");
 		chatArea.setEnabled(false);
@@ -148,6 +164,24 @@ public class ChatPanel extends JPanel
 					String user = typingField.getText();
 					String results = baseController.analyze(user);
 					chatArea.setText(results);
+				}
+			});
+		
+		saveButton.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent click)
+				{
+					String file = IOController.saveFile(chatArea.getText());
+					promptLabel.setText(file);
+				}
+			});
+		
+		loadButton.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent click)
+				{
+					String loadedText = IOController.readTextFromFile(promptLabel.getText());
+					promptLabel.setText(loadedText);
 				}
 			});
 	}
